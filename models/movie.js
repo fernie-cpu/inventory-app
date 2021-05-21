@@ -12,7 +12,7 @@ var MovieSchema = new Schema({
 });
 
 MovieSchema.virtual('url').get(function () {
-  return '/movie/' + this._id;
+  return '/collection/movie/' + this._id;
 });
 
 module.exports = mongoose.model('Movie', MovieSchema);
