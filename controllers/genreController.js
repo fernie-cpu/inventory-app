@@ -17,3 +17,31 @@ exports.genre_list = (req, res, next) => {
       });
     });
 };
+
+exports.genre_detail = (req, res) => {
+  res.send('genre detail page: ' + req.params.id);
+};
+
+exports.genre_create_get = (req, res) => {
+  res.send('create genre get');
+};
+
+exports.genre_create_post = (req, res) => {
+  res.send('create genre post');
+};
+
+exports.genre_delete_get = (req, res) => {
+  res.send('delete genre get');
+};
+
+exports.genre_delete_post = (req, res) => {
+  res.send('delete genre post');
+};
+
+exports.genre_update_get = (req, res) => {
+  res.send('update genre get');
+};
+
+exports.genre_update_post = (req, res) => {
+  res.send('update genre post');
+};
