@@ -18,8 +18,32 @@ exports.genre_list = (req, res, next) => {
     });
 };
 
-exports.genre_detail = (req, res) => {
-  res.send('genre detail page: ' + req.params.id);
+exports.genre_detail = (req, res, next) => {
+  async.parallel(
+    {
+      genre: (callback) => {
+        Genre.findById(req.params.id).exec(callback);
+      },
+      genre_movies: (callback) => {
+        Movie.find({ genre: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.genre == null) {
+        let err = new Error('Genre not found');
+        err.status = 404;
+        return next(err);
+      }
+      res.render('genre_detail', {
+        title: `${results.genre.name} Movies - Movies Collection`,
+        genre: results.genre,
+        genre_movies: results.genre_movies,
+      });
+    }
+  );
 };
 
 exports.genre_create_get = (req, res) => {
