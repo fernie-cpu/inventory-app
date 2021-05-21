@@ -7,7 +7,7 @@ var logger = require('morgan');
 // mongoose
 var mongoose = require('mongoose');
 var dev_db_url =
-  'mongodb+srv://admin:inventoryapp@cluster0.kgymg.mongodb.net/inventory-app?retryWrites=true&w=majority';
+  'mongodb+srv://clown:1sf549A7VsLJRzAg@cluster1.mzn49.mongodb.net/inventory?retryWrites=true&w=majority';
 var mongoDB = process.env.MONGO_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
