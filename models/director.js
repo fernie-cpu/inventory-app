@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+const { DateTime } = require('luxon');
+
 var DirectorSchema = new Schema({
   first_name: { type: String, required: true, maxLength: 100 },
   family_name: { type: String, required: true, maxLength: 100 },
@@ -16,14 +18,22 @@ DirectorSchema.virtual('name').get(function () {
   return this.first_name + ' ' + this.family_name;
 });
 
-DirectorSchema.virtual('lifespan').get(function () {
-  return (
-    this.date_of_birth.getYear() - this.date_of_death.getYear()
-  ).toString();
+DirectorSchema.virtual('birth_date').get(function () {
+  let birth = DateTime.fromJSDate(this.date_of_birth).toLocaleString(
+    DateTime.DATE_MED
+  );
+  return birth;
+});
+
+DirectorSchema.virtual('death_date').get(function () {
+  let death = DateTime.fromJSDate(this.date_of_death).toLocaleString(
+    DateTime.DATE_MED
+  );
+  return death;
 });
 
 DirectorSchema.virtual('url').get(function () {
-  return '/director/' + this._id;
+  return '/collection/director/' + this._id;
 });
 
 module.exports = mongoose.model('Director', DirectorSchema);
