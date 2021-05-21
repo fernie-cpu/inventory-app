@@ -12,6 +12,7 @@ var DirectorSchema = new Schema({
   place_of_death: String,
   birth_name: String,
   nickname: String,
+  mini_bio: String,
 });
 
 DirectorSchema.virtual('name').get(function () {
