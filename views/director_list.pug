@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    ul 
+      each director in director_list
+        li
+          a(href=director.url) #{director.name}
+          |  (#{director.date_of_birth} - #{director.date_of_death})
+
+        
+      else 
+        li There are no directors.
