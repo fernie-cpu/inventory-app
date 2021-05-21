@@ -27,12 +27,45 @@ exports.index = (req, res) => {
   );
 };
 
-exports.movie_list = (req, res) => {
-  res.send('Movie list');
+exports.movie_list = (req, res, next) => {
+  Movie.find({}, 'title director')
+    .populate('director')
+    .exec((err, list_movies) => {
+      if (err) {
+        return next(err);
+      }
+      res.render('movie_list', {
+        title: 'Movies List',
+        movie_list: list_movies,
+      });
+    });
 };
 
-exports.movie_detail = (req, res) => {
-  res.send('movie detail page: ' + req.params.id);
+exports.movie_detail = (req, res, next) => {
+  async.parallel(
+    {
+      movie: (callback) => {
+        Movie.findById(req.params.id)
+          .populate('director')
+          .populate('genre')
+          .exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.movie == null) {
+        let err = new Error('Movie not found');
+        err.status = 404;
+        return next(err);
+      }
+      res.render('movie_detail', {
+        title: `${results.movie.title} - Movies Collection`,
+        movie: results.movie,
+      });
+    }
+  );
 };
 
 exports.movie_create_get = (req, res) => {
