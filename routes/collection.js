@@ -3,6 +3,7 @@ var router = express.Router();
 
 const movie_controller = require('../controllers/movieController');
 const genre_controller = require('../controllers/genreController');
+const director_controller = require('../controllers/director_controller');
 
 router.get('/', movie_controller.index);
 
@@ -21,6 +22,24 @@ router.post('/movie/:id/update', movie_controller.movie_update_post);
 router.get('/movie/:id', movie_controller.movie_detail);
 
 router.get('/movies', movie_controller.movie_list);
+
+//director
+
+router.get('/director/create', director_controller.director_create_get);
+
+router.post('/director/create', director_controller.director_create_post);
+
+router.get('/director/:id/delele', director_controller.director_delete_get);
+
+router.post('/director/:id/delete', director_controller.director_delete_post);
+
+router.get('/director/:id/update', director_controller.director_update_get);
+
+router.post('/director/:id/update', director_controller.director_update_post);
+
+router.get('/director/:id', director_controller.director_detail);
+
+router.get('/directors', director_controller.director_list);
 
 // genre
 router.get('/genre/create', genre_controller.genre_create_get);
