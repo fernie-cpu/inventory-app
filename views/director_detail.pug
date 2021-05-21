@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    h1 #{director.name}
+    p #[strong Born: ] #{director.birth_date} in #{director.place_of_birth}
+    p #[strong Birth name: ] #{director.birth_name}
+    
+    if director.nickname
+      p #[strong Nickname: ] #{director.nickname}
+    else 
+
+    div(class='director-movies')
+      
+      h4 Movies 
+
+      dl 
+        each movie in director_movies
+          dt 
+            a(href=movie.url) #{movie.title}
+          dd #{movie.synopsis}
+
+        else 
+          p This director hasn't directed no movies?

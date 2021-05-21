@@ -7,7 +7,11 @@ block content
       each director in director_list
         li
           a(href=director.url) #{director.name}
-          |  (#{director.date_of_birth} - #{director.date_of_death})
+          |  #{director.birth_date} - 
+          if !director.death_date
+            span Still alive and bitching
+          else 
+            span #{director.death_date}
 
         
       else 
