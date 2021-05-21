@@ -58,7 +58,7 @@ exports.genre_create_post = [
 
     let genre = new Genre({ name: req.body.name });
     if (!errors.isEmpty()) {
-      res.render('gender_form', {
+      res.render('genre_form', {
         title: 'Create Genre',
         genre: genre,
         errors: errors.array(),
