@@ -130,7 +130,7 @@ function createGenreDirectors(cb) {
           'Leytonstone, London, England, UK',
           'Bel Air, Los Angeles, California, USA',
           'Alfred Joseph Hitchcock',
-          'Hitch \nThe Master of Suspense',
+          'Hitch, The Master of Suspense',
           '1899-08-13',
           '1980-04-29',
           callback
@@ -297,7 +297,7 @@ function createMovies(cb) {
           "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before Adolf Hitler's Nazis can obtain its awesome powers.",
           '8.4',
           directors[3],
-          [genres[1]],
+          [genres[(0, 1)]],
           callback
         );
       },
