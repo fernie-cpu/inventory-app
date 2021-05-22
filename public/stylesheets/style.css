@@ -6,6 +6,11 @@ a {
   color: #00b7ff;
 }
 
+.nav-span {
+  border-left: 1px solid #ccc;
+  height: 1.3em;
+}
+
 .info-movie-m:first-child {
   margin-left: 0;
 }
