@@ -1,0 +1,37 @@
+extends layout 
+
+block content 
+    h1= title
+
+    form(method='POST' action='')
+        .input-form.mb-3 
+            label(for='first_name') First name: 
+            input#name.form-control(type='text', placeholder='Enter first name', name='first_name', required='true', value=(undefined===director ? '' : director.first_name))
+            label(for='family_name') Last name:
+            input#name.form-control(type='text', placeholder='Enter family name (last name)', name='family_name', required='true', value=(undefined===director ? '' : director.family_name))
+       
+        .input-form.mb-3 
+            label(for='date_of_birth') Date of birth:
+            input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===director ? '' : director.date_of_birth))
+            label(for='date_of_birth') Date of birth:
+            input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===director ? '' : director.date_of_birth))
+       
+        .input-form.mb-3 
+            label(for='place_of_birth') Place of birth:
+            input#place_of_birth.form-control(type='text', placeholder='(e.g. New York City, New York, USA)', name='place_of_birth', required='true' value=(undefined===director ? '' : director.place_of_birth))
+            label(for='place_of_death') Place of death:
+            input#place_of_death.form-control(type='text', placeholder='not required, of course', name='place_of_death', value=(undefined===director ? '' : director.place_of_death))
+
+        .input-form.mb-3 
+            label(for='birth_name' action='') Nickname:
+            input#birth_name.form-control(type='text', placeholder='Enter nickname if there is one', name='birth_name', value=(undefined===director ? '' : director.nickname))
+        
+        .input-form.mb-3 
+            label(for='mini_bio' action='') Bio:
+            textarea#mini_bio.form-control(placeholder='Biography goes here...', name='mini_bio')
+        button.btn.btn-primary(type='submit') Submit 
+
+    if errors
+        ul 
+          for error in errors
+            li!= error.msg
